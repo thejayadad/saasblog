@@ -16,6 +16,13 @@ const UploadForm = () => {
           })
           setFiles(prev => [...newFiles, ...prev])
         }
+
+        async function handleDeleteFile(index){
+            const newFiles = files.filter((_, i) => i !== index)
+            setFiles(newFiles)
+          }
+
+
   return (
     <>
     <form action="" ref={formRef}>
@@ -24,7 +31,9 @@ const UploadForm = () => {
             <div>
                 {
                     files.map((file, index) => (
-                        <PhotoCard key={index} url={URL.createObjectURL(file)} />
+                        <PhotoCard key={index} url={URL.createObjectURL(file)} 
+                        onClick={() => handleDeleteFile(index)}
+                        />
                       
                     ))
                 }

@@ -1,8 +1,14 @@
+import Image from 'next/image'
 import React from 'react'
 
-const PhotoCard = ({url}) => {
+const PhotoCard = ({url, onClick}) => {
   return (
-    <div>{url}</div>
+    <div>
+      <div>
+        <Image src={url} alt='image' width={100} height={100} priority />
+      </div>
+      <button type='button' onClick={onClick} >Delete</button>
+    </div>
   )
 }
 
