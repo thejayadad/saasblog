@@ -6,6 +6,7 @@ export async function getAllAlbums(){
     connectDB()
     try {
         const album = await Album.find({})
+        console.log("Album " + album)
         return album
     } catch (error) {
         console.log("Error " + error) 

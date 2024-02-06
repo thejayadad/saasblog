@@ -5,3 +5,20 @@
 body{
   overflow-x: hidden;
 }
+/* MasonryLayout.css */
+
+.masonry-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+}
+
+.masonry-item {
+  break-inside: avoid;
+  margin-bottom: 15px;
+}
+
+.masonry-item img {
+  width: 100%;
+  display: block;
+}
