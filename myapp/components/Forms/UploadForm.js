@@ -2,6 +2,8 @@
 import React, { useState } from 'react'
 import { useRef } from 'react'
 import PhotoCard from '../Card/PhotoCard'
+import SubmitButton from '../Buttons/SubmitButton'
+import { uploadPhoto } from '@/lib/action'
 
 const UploadForm = () => {
     const formRef = useRef()
@@ -17,15 +19,26 @@ const UploadForm = () => {
           setFiles(prev => [...newFiles, ...prev])
         }
 
-        async function handleDeleteFile(index){
-            const newFiles = files.filter((_, i) => i !== index)
-            setFiles(newFiles)
-          }
+    async function handleDeleteFile(index){
+        const newFiles = files.filter((_, i) => i !== index)
+        setFiles(newFiles)
+        }
+    
+        async function handleUpload (){
+            const formData = new FormData();
 
+            files.forEach(file => {
+              formData.append('files', file)
+            })
+
+            const res = await uploadPhoto(formData)
+        }
+
+    
 
   return (
     <>
-    <form action="" ref={formRef}>
+    <form action={handleUpload} ref={formRef}>
         <div>
             <input type='file' accept='image/*' multiple onChange={handleInputFiles}/>
             <div>
@@ -39,7 +52,7 @@ const UploadForm = () => {
                 }
             </div>
         </div>
-
+        <SubmitButton value="Upload" />
     </form>
     </>
   )
