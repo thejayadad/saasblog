@@ -3,13 +3,15 @@ import React from 'react'
 import { useFormStatus } from 'react-dom'
 
 
-const SubmitButton = () => {
+const SubmitButton = ({ value, ...props }) => {
     const { pending } = useFormStatus()
 
   return (
    <>
-    <button type="submit" aria-disabled={pending}>
-        UpLoad Photo
+   <button 
+   type='submit'
+   disabled={pending} {...props}>
+      { pending ? 'Loading...' : value }
     </button>
    </>
   )
